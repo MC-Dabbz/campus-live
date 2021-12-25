@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Campus -  welcome</title>
+    <link rel="stylesheet" href="src/reset.css">
+    <link rel="stylesheet" href="src/header.css">
+    <link rel="stylesheet" href="src/typography.css">
+    <link rel="stylesheet" href="src/layout.css">
+    <link rel="stylesheet" href="src/buttons.css">
+    <link rel="stylesheet" href="src/theme.css">
+    <link rel="stylesheet" href="src/footer.css">
+    <link rel="stylesheet" href="src/forms.css">
+    <link rel="stylesheet" href="src/cover.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <style>
+      :root {
+  --animate-duration: 500ms;
+  --animate-delay: 0.9s;
+}
+  </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kurale&display=swap" rel="stylesheet">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.6.1/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.6.1/firebase-firestore-compat.js"></script>
+    <!-- <script defer src="/__/firebase/9.6.1/firebase-functions-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.1/firebase-messaging-compat.js"></script> -->
+    <script defer src="/__/firebase/9.6.1/firebase-storage-compat.js"></script>
+    <!-- <script defer src="/__/firebase/9.6.1/firebase-analytics-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.1/firebase-remote-config-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/9.6.1/firebase-performance-compat.js"></script> -->
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+
+    
+  </head>
+  <body>
+    <div class="cover hidden" id="cover">
+        <div class="progress-container">
+            <!-- <progress class="progress" max="100" value="50">
+            </progress> -->
+            
+            <div class="progress-materializecss">
+              <div class="indeterminate"></div>
+            </div>
+                  
+          </div>
+    </div>
+
+    <div class="header">
+      <div class="icon"><img src="src/assets/h_icon.png" alt="" class="image-icon"></div>
+      <div class="title fancy-text">Campus</div>
+    </div>
+    <main class="mdc-typography roboto-font">
+      <div class="container form-container">
+        <form class="registration animate__animated" id="form1">
+            <label class="control-label" for="email">Email address</label>
+            <input type="email" required autofocus autocomplete="email" name="email" id="email" placeholder="Type here...">
+            
+            <div class="button-container" style="width:100%">
+                <button type="submit" class="button button-short primary-btn button-font-size primary-bg on-primary">Next</button>
+                <button class="button button-short button-font-size muted-btn muted-bg on-muted">Back</button>
+            </div>
+                
+              
+        </form>
+       
+        <form class="registration hidden animate__animated" id="form3">
+            <label for="password">Set password</label>
+            <input type="password" required autocomplete="false" name="password" id="password" placeholder="***">
+            
+            <div class="button-container" style="width:100%">
+                <button type="submit" class="button button-short button-font-size primary-bg on-primary">Next</button>
+                <a class="button button-short button-font-size muted-bg on-muted">Back</a>
+            </div>    
+        </form>
+
+        <form class="registration hidden animate__animated" id="form4">
+            <label for="confirm-password">Confirm password</label>
+            <input type="password" required autocomplete="false" name="confirm-password" id="confirm-password" placeholder="***">
+            
+            <div class="button-container" style="width:100%">
+                <button type="submit" class="button button-short button-font-size primary-bg on-primary">Next</button>
+                <a class="button button-short button-font-size muted-bg on-muted">Back</a>
+            </div>    
+        </form>
+
+        <form class="registration hidden animate__animated" id="form5">
+            <label for="first-name">First name</label>
+            <input type="text" required autocomplete="false" name="first-name" id="first-name" placeholder="">
+            
+            <div class="button-container" style="width:100%">
+                <button type="submit" class="button button-short button-font-size primary-bg on-primary">Next</button>
+                <a class="button button-short button-font-size muted-bg on-muted">Back</a>
+            </div>    
+        </form>
+
+        <form class="registration hidden animate__animated" id="form6">
+            <label for="last-name">Last name</label>
+            <input type="text" required autocomplete="false" name="last-name" id="last-name" placeholder="">
+            
+            <div class="button-container" style="width:100%">
+                <button type="submit" class="button button-short button-font-size primary-bg on-primary">Next</button>
+                <a class="button button-short button-font-size muted-bg on-muted">Back</a>
+            </div>    
+        </form>
+      </div>
+      
+      
+    </main>
+    <br>
+    
+    <div class="footer roboto-font">
+      <div class="link-container">
+          <div class="footer-section"><a href="#">Home</a></div>
+          <div class="footer-section"><a href="#">About us</a></div>
+          <div class="footer-section"><a href="#">Contact us</a></div>
+          <div class="footer-section"><a href="#">Terms & condtions</a></div>
+      </div>
+          <div class="copyright">©2021 Campus</div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        var form1 = document.getElementById('form1');
+        var form2 = document.getElementById('form2');
+        var form3 = document.getElementById('form3');
+        var form4 = document.getElementById('form4');
+        var form5 = document.getElementById('form5');
+        var form6 = document.getElementById('form6');
+        
+      form1.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('email').value;
+        saveEmail('email', value);
+        form1.classList.add('hidden');
+        form2.classList.remove('hidden');
+        form2.classList.add('animate__slideInRight');
+      })
+
+      form2.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('student-number').value;
+        saveEmail('student-number', value);
+        form2.classList.add('hidden');
+        form3.classList.remove('hidden');
+        form3.classList.add('animate__slideInRight');
+      })
+      form3.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('password').value;
+        saveEmail('password', value);
+        form3.classList.add('hidden');
+        form4.classList.remove('hidden');
+        form4.classList.add('animate__slideInRight');
+      })
+      form4.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('confirm-password').value;
+        saveEmail('confirm-password', value);
+        form4.classList.add('hidden');
+        form5.classList.remove('hidden');
+        form5.classList.add('animate__slideInRight');
+      })
+
+      form5.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('first-name').value;
+        saveEmail('first-name', value);
+        form5.classList.add('hidden');
+        form6.classList.remove('hidden');
+        form6.classList.add('animate__slideInRight');
+      })
+      form6.addEventListener('submit', function(){
+        event.preventDefault();
+        let value = document.getElementById('last-name').value;
+        saveEmail('last-name', value);
+        document.getElementById("cover" ).classList.remove("hidden");
+        // Add a new document in collection "cities"
+        firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
+            email: localStorage.getItem('email'),
+            student_id: localStorage.getItem('student-number'),
+            first_name: localStorage.getItem('first-name'),
+            last_name: localStorage.getItem('last-name'),
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+            firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
+                .then((userCredential) => {
+                    // Signed in 
+                    var user = userCredential.user;
+                    console.log('signed in');
+                    window.location.href = "success.html";
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorMessage);
+                    // ..
+                });
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+      })
+
+      var myStorage = window.localStorage;
+      function saveEmail(field, value){
+        localStorage.setItem(field, value);
+        console.log(field + ' saved');
+        
+      }
+     
+        
+      });
+      
+    </script>
+  </body>
+</html>

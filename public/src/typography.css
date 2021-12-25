@@ -1,0 +1,12 @@
+.fancy-text{
+    font-family: 'Kurale', serif;
+  }
+.roboto-font{
+    font-family: 'Roboto', serif;
+}
+.button-font-size{
+    font-size: 15px;
+}
+h1{
+    font-size: 1.5rem !important;
+}

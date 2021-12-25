@@ -1,0 +1,27 @@
+{
+  "name": "campus-live",
+  "version": "1.0.0",
+  "description": "Online shopping platform for universities",
+  "main": "public/src/index.js",
+  "scripts": {
+    "test": "try out campus",
+    "start": "webpack serve",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwizachiwale1/campus.git"
+  },
+  "keywords": [
+    "Online",
+    "shping",
+    "e-commerce",
+    "campus"
+  ],
+  "author": "Mwiza Chiwale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwizachiwale1/campus/issues"
+  },
+  "homepage": "https://github.com/mwizachiwale1/campus#readme"
+}

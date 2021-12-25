@@ -1,0 +1,37 @@
+.primary-bg{
+    background-color: #387ef5;
+}
+.secondary-bg{
+    background-color: #F24B59;
+}
+.on-primary{
+    color: #FFF;
+    
+}
+.on-secondary{
+    color: #FFF;
+}
+.tetiary-bg{
+    background-color: #84BF9E;
+}
+.on-tetiary-bg{
+    color: #444444;
+}
+.primary-text{
+    color: #387ef5;
+}
+.secondary-text{
+    color: #F24B59;
+}
+.tetiary-text{
+    color: #84BF9E;
+}
+.muted-text{
+    color: #F2F2F2;
+}
+.muted-bg{
+    background-color: #F2F2F2;
+}
+.on-muted{
+    color: #444444;
+}

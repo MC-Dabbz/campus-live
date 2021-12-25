@@ -1,0 +1,30 @@
+form{
+    margin-top: 20px;
+    padding: 1rem;
+}
+form label{
+    width: 100%;
+    
+}
+form input{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    height: 2.9rem;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border: 2px solid #797979;
+    background-color: #387ef52e;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+form input:focus {
+    border-bottom: 2px solid #387ef5; 
+  }
+.form-container{
+    min-height: 250px;
+}
+  .hidden{
+      display: none;
+  }
