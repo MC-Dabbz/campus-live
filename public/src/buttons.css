@@ -9,6 +9,7 @@
     font-size: 15px;
     text-align: center;
     font-weight: 500;
+    text-transform: uppercase;
 }
 .button-short{
     width: 100px;
@@ -26,15 +27,19 @@
     
 }
 .touch-button{
-    margin: 2rem;
+    margin: 1.4rem;
 }
 .full-length{
-    width: 100%;
+    width: 80%;
     height: 60px;
     padding: 1rem;
     line-height: 40px;
     display: inline-block;
     line-height: 30px !important;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 .button-container{
     width: 100%;
@@ -42,11 +47,11 @@
     box-sizing: content-box;
 }
 .primary-btn{
-    border: 1px solid #3372dd;
+    border: 1px solid #3074e7;
 }
 .muted-btn{
     border: 1px solid #d7d7d7;
 }
 .secondary-btn{
-    border: 1px solid #b3313c;
+    border: 1px solid #e73f4d;
 }
