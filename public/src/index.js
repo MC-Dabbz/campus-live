@@ -59,28 +59,13 @@ function getForm(link){
             event.preventDefault();
             let value = document.getElementById(input_target).value;
             saveData(input_target, value);
-            
-            if(next_page == "done"){
-                firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
-                    email: localStorage.getItem('email'),
-                    student_id: localStorage.getItem('student-number'),
-                    first_name: localStorage.getItem('first_name'),
-                    last_name: localStorage.getItem('last_name'),
-                    phone_number: localStorage.getItem('phone_number'),
-                }).then(() => {
-                    firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
+            if(next_page === "registration/form3.html"){
+                firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
                         .then((userCredential) => {
                             // Signed in 
                             var user = userCredential.user;
                             console.log('signed in');
-                            getPage("registration/success.html").then((data)=>{
-                                displayPage(data, page);
-                                loading(false);
-                            // ...
-                        }).catch((error)=>{
-                            console.log(error);
-                            loading(false);
-                        });
+                           
                 }).catch((error) => {
                     loading(false);
                     var errorCode = error.code;
@@ -91,6 +76,23 @@ function getForm(link){
                     }
 
                     // ..
+                });
+            }
+            if(next_page == "done"){
+                firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
+                    email: localStorage.getItem('email'),
+                    student_id: localStorage.getItem('student-number'),
+                    first_name: localStorage.getItem('first_name'),
+                    last_name: localStorage.getItem('last_name'),
+                    phone_number: localStorage.getItem('phone_number'),
+                }).then(() => {
+                    getPage("registration/success.html").then((data)=>{
+                        displayPage(data, page);
+                        loading(false);
+                    // ...
+                }).catch((error)=>{
+                    console.log(error);
+                    loading(false);
                 });
                 
             }).catch((error)=>{
