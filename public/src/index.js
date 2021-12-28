@@ -78,31 +78,37 @@ function getForm(link){
                     // ..
                 });
             }
-            if(next_page == "done"){
-                firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
-                    email: localStorage.getItem('email'),
-                    student_id: localStorage.getItem('student-number'),
-                    first_name: localStorage.getItem('first_name'),
-                    last_name: localStorage.getItem('last_name'),
-                    phone_number: localStorage.getItem('phone_number'),
-                }).then(() => {
-                    getPage("registration/success.html").then((data)=>{
-                        displayPage(data, page);
+            if(next_page == "done-2"){
+                if(localStorage.getItem("account_type") === "user"){
+                    firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
+                        email: localStorage.getItem('email'),
+                        student_id: localStorage.getItem('student-number'),
+                        first_name: localStorage.getItem('first_name'),
+                        last_name: localStorage.getItem('last_name'),
+                        phone_number: localStorage.getItem('phone_number'),
+                        account_type: localStorage.getItem('account_type'),
+                    }).then(() => {
+                        getPage("registration/success.html").then((data)=>{
+                            displayPage(data, page);
+                            loading(false);
+                        // ...
+                    }).catch((error)=>{
+                        console.log(error);
                         loading(false);
-                    // ...
+                    });
+                    
                 }).catch((error)=>{
-                    console.log(error);
                     loading(false);
+                    var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorMessage);
+                        console.log(errorCode);
                 });
-                
-            }).catch((error)=>{
-                loading(false);
-                var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorMessage);
-                    console.log(errorCode);
-            });
-        }else if(input_target == "password"){
+                } else{
+                    getForm("registration/form7.html");
+                }
+                return false;
+        } else if(input_target == "password"){
             let password_help = document.getElementById("password-help");
             // Validate length
             if(value.length >= 8) {
@@ -199,16 +205,6 @@ function saveData(field, value){
   console.log(field + ' saved');
   
 }
-
-window.addEventListener("click", function(e){
-    if(e.nodeName === "A"){
-        e.preventDefault();
-        console.log("Blocked");
-    }
-    
-    
-})
-
 window.togglePassword = function togglepassword(){
     let password = document.getElementById('password');
     let button = document.getElementById('togglePassword');
@@ -224,4 +220,10 @@ window.togglePassword = function togglepassword(){
     }
 
 }
+
+window.setAccountType = function accountType(type){
+    localStorage.setItem("account_type", type);
+    window.location.hash = "registration/form1.html";
+}
+
 });
