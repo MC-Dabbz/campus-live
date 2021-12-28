@@ -27,11 +27,14 @@
     color: #84BF9E;
 }
 .muted-text{
-    color: #F2F2F2;
+    color: #000000e3;
 }
 .muted-bg{
     background-color: #F2F2F2;
 }
 .on-muted{
     color: #444444;
+}
+.error-text{
+    color: #ff9800;
 }

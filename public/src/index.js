@@ -64,8 +64,9 @@ function getForm(link){
                 firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
                     email: localStorage.getItem('email'),
                     student_id: localStorage.getItem('student-number'),
-                    first_name: localStorage.getItem('first-name'),
-                    last_name: localStorage.getItem('last-name'),
+                    first_name: localStorage.getItem('first_name'),
+                    last_name: localStorage.getItem('last_name'),
+                    phone_number: localStorage.getItem('phone_number'),
                 }).then(() => {
                     firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
                         .then((userCredential) => {
@@ -132,13 +133,6 @@ function getForm(link){
             return false;
         }
         getForm(next_page);
-        } else if(input_target == "confirm-password"){
-            if(localStorage.getItem('password') !== value){
-                document.getElementById("confirm-password-help").classList.remove("hidden");
-                return false;
-            }else{
-                getForm(next_page);
-            }
         } else{
                 getForm(next_page);
 
@@ -212,4 +206,18 @@ window.addEventListener("click", function(e){
     
     
 })
+
+window.togglePassword = function togglepassword(){
+    let password = document.getElementById('password');
+    if(state === "hidden"){
+        button.innerHTML="visibility";
+        password.setAttribute('type', "text");
+        button.setAttribute("state", "visible");
+    }else{
+        button.innerHTML="visibility_off";
+        password.setAttribute('type', "password");
+        button.setAttribute("state", "hidden");
+    }
+
+}
 });

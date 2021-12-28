@@ -1,7 +1,11 @@
-<form class="registration hidden animate__animated" id="form6" next_form="registration/form7.html" input_name="last_name">
-    <label for="last_name">Last name</label>
-    <input type="text" required autofocus autocomplete="true" name="last_name" id="last_name" placeholder="">
-    
+<form class="registration hidden animate__animated" id="form6" next_form="done" input_name="phone_number">
+    <label for="last-name">Phone number</label>
+    <input type="tel" required autofocus autocomplete="true" name="phone_number" id="phone_number" placeholder="">  
+    <label class="label-container">I agree to the terms & conditions
+        <input type="checkbox" id="terms-conditions">
+        <span class="checkmark"></span>
+      </label>
+      <br>
     <div class="button-container" style="width:100%">
         <button type="submit" class="button button-short primary-btn button-font-size primary-bg on-primary">Next</button>
         <button onclick="window.history.go(-1);" class="button button-short button-font-size muted-btn muted-bg on-muted">Back</button>
