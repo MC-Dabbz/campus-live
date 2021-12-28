@@ -209,6 +209,8 @@ window.addEventListener("click", function(e){
 
 window.togglePassword = function togglepassword(){
     let password = document.getElementById('password');
+    let button = document.getElementById('togglePassword');
+    let state = button.getAttribute("state");
     if(state === "hidden"){
         button.innerHTML="visibility";
         password.setAttribute('type', "text");
