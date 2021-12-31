@@ -1,0 +1,59 @@
+/*Just in case*/
+@media (max-width: 261px){
+    .header{
+        width:261px;
+    }
+    .container.form-container, #page{
+        width:261px;
+        height:auto;
+    }
+}
+/*Phones and tablets in Potrait*/
+@media (orientation: potrait) and (max-width: 1007px){
+    .container.form-container, #page{
+        width:auto;
+        height:auto;
+    }
+}
+/*Phones and Tablets in Landscape*/
+@media (orientation: landscape) and (max-width: 1007px){
+    body{
+        background-image: url("assets/tab-landing-rotated.png");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size:50% 100%;
+        }
+    .container.form-container, #page{
+        width: 50%;
+        float: right;
+    }
+    .footer.roboto-font{
+        width: 50%;
+        float: left;
+        position: absolute;
+    }
+    .header{
+        display:none;
+    }
+}
+/*Laptops*/
+@media (min-width: 1008px){
+    body{
+        background-image: url("assets/tab-landing-rotated.png");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size:50% 100%;
+        }
+    .container.form-container, #page{
+        width: 50%;
+        float: right;
+    }
+    .footer.roboto-font{
+        width: 50%;
+        float: left;
+        position: absolute;
+    }
+    .header{
+        display:none;
+    }
+}
