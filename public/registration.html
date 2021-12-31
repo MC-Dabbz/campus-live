@@ -23,9 +23,13 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   </head>
   <body>
-    <div class="cover hidden" id="cover">
+    <div class="cover hidden body-font" id="cover">
         <div class="progress-container">
+          <div class="progress">
+            <div class="determinate" id="progres-bar"></div>
           </div>
+          <div id="upload-helper-text"></div>
+    </div>
     </div>
     <div class="spinner" id="spinner"></div> 
 
@@ -34,12 +38,9 @@
       <div class="title fancy-text">Campus</div>
     </div>
     <main class="mdc-typography body-font">
-
       <div class="container form-container" id="page">
 
       </div>
-      
-      
     </main>
     <br>
     
@@ -58,7 +59,7 @@
         <script defer src="/__/firebase/9.6.1/firebase-database-compat.js"></script>
         <script defer src="/__/firebase/9.6.1/firebase-firestore-compat.js"></script>
         <script defer src="/__/firebase/9.6.1/firebase-storage-compat.js"></script>
-        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        <script defer src="/__/firebase/init.js?useEmulator=false"></script>
         <script src="src/index.js" defer></script>
   </body>
 </html>

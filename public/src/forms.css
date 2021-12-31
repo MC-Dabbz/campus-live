@@ -32,4 +32,26 @@ form .visibility {
     margin-left: -30px;
     cursor: pointer;
 }
+.select_image_button{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    height: 2.9rem;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border: 2px solid #797979;
+    background-color: #387ef52e;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    line-height: 2.9rem;
+}
   
+  .form-image-preview{
+    height: 40px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 40px;
+  }
