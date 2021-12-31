@@ -59,27 +59,13 @@ function getForm(link){
             event.preventDefault();
             let value = document.getElementById(input_target).value;
             saveData(input_target, value);
-            
-            if(next_page == "done"){
-                firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
-                    email: localStorage.getItem('email'),
-                    student_id: localStorage.getItem('student-number'),
-                    first_name: localStorage.getItem('first-name'),
-                    last_name: localStorage.getItem('last-name'),
-                }).then(() => {
-                    firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
+            if(next_page === "registration/form3.html"){
+                firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
                         .then((userCredential) => {
                             // Signed in 
                             var user = userCredential.user;
                             console.log('signed in');
-                            getPage("registration/success.html").then((data)=>{
-                                displayPage(data, page);
-                                loading(false);
-                            // ...
-                        }).catch((error)=>{
-                            console.log(error);
-                            loading(false);
-                        });
+                           
                 }).catch((error) => {
                     loading(false);
                     var errorCode = error.code;
@@ -91,15 +77,38 @@ function getForm(link){
 
                     // ..
                 });
-                
-            }).catch((error)=>{
-                loading(false);
-                var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorMessage);
-                    console.log(errorCode);
-            });
-        }else if(input_target == "password"){
+            }
+            if(next_page == "done-2"){
+                if(localStorage.getItem("account_type") === "user"){
+                    firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
+                        email: localStorage.getItem('email'),
+                        student_id: localStorage.getItem('student-number'),
+                        first_name: localStorage.getItem('first_name'),
+                        last_name: localStorage.getItem('last_name'),
+                        phone_number: localStorage.getItem('phone_number'),
+                        account_type: localStorage.getItem('account_type'),
+                    }).then(() => {
+                        getPage("registration/success.html").then((data)=>{
+                            displayPage(data, page);
+                            loading(false);
+                        // ...
+                    }).catch((error)=>{
+                        console.log(error);
+                        loading(false);
+                    });
+                    
+                }).catch((error)=>{
+                    loading(false);
+                    var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorMessage);
+                        console.log(errorCode);
+                });
+                } else{
+                    getForm("registration/form7.html");
+                }
+                return false;
+        } else if(input_target == "password"){
             let password_help = document.getElementById("password-help");
             // Validate length
             if(value.length >= 8) {
@@ -132,13 +141,6 @@ function getForm(link){
             return false;
         }
         getForm(next_page);
-        } else if(input_target == "confirm-password"){
-            if(localStorage.getItem('password') !== value){
-                document.getElementById("confirm-password-help").classList.remove("hidden");
-                return false;
-            }else{
-                getForm(next_page);
-            }
         } else{
                 getForm(next_page);
 
@@ -203,13 +205,25 @@ function saveData(field, value){
   console.log(field + ' saved');
   
 }
-
-window.addEventListener("click", function(e){
-    if(e.nodeName === "A"){
-        e.preventDefault();
-        console.log("Blocked");
+window.togglePassword = function togglepassword(){
+    let password = document.getElementById('password');
+    let button = document.getElementById('togglePassword');
+    let state = button.getAttribute("state");
+    if(state === "hidden"){
+        button.innerHTML="visibility";
+        password.setAttribute('type', "text");
+        button.setAttribute("state", "visible");
+    }else{
+        button.innerHTML="visibility_off";
+        password.setAttribute('type', "password");
+        button.setAttribute("state", "hidden");
     }
-    
-    
-})
+
+}
+
+window.setAccountType = function accountType(type){
+    localStorage.setItem("account_type", type);
+    window.location.hash = "registration/form1.html";
+}
+
 });

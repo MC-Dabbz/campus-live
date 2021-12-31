@@ -1,9 +1,14 @@
-<form class="registration hidden animate__animated" id="form8" next_form="done" input_name="user_name">
-    <label for="user_name">Username</label>
-    <input type="text" required autofocus autocomplete="true" name="user_name" id="user_name" placeholder="">
+<form class="registration hidden animate__animated" id="form2" next_form="done-3" input_name="image_student_id">
+    <p>
+    <label for="password">Passport photo</label>
+    <input type="file" required name="passport_photo" id="passport_photo" accept="image/*"/>
+    </p>
+   
+    <span id="password-help" class="muted-text"><i>Photo on student ID must match with your passport size photo</i></span>
+    <br><br>
     <div class="button-container" style="width:100%">
         <button type="submit" class="button button-short primary-btn button-font-size primary-bg on-primary">Next</button>
-        <button onclick="window.history.go(-1);" class="button button-short button-font-size muted-btn muted-bg on-muted">Back</button>
-    </div>    
+        <button type="button" onclick="window.history.go(-2);" class="button button-short button-font-size muted-btn muted-bg on-muted">Back</button>
+    </div> 
+     
 </form>
-

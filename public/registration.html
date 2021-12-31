@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Campus-Signup</title>
-    <!-- <link rel="stylesheet" href="src/reset.css">
-    <link rel="stylesheet" href="src/header.css">
-    <link rel="stylesheet" href="src/typography.css">
-    <link rel="stylesheet" href="src/layout.css">
-    <link rel="stylesheet" href="src/buttons.css">
-    <link rel="stylesheet" href="src/theme.css">
-    <link rel="stylesheet" href="src/footer.css">
-    <link rel="stylesheet" href="src/forms.css">
-    <link rel="stylesheet" href="src/cover.css">
-    <link rel="stylesheet" href="src/spinner.css"> -->
     <link rel="stylesheet" href="src/style.css">
     <link
     rel="stylesheet"
@@ -26,9 +16,11 @@
 }
   </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kurale&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kurale&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 
@@ -37,8 +29,6 @@
   <body>
     <div class="cover hidden" id="cover">
         <div class="progress-container">
-            <!-- <progress class="progress" max="100" value="50">
-            </progress> -->
             
             <div class="progress-materializecss">
               <div class="indeterminate"></div>
@@ -52,15 +42,17 @@
       <div class="icon"><img src="src/assets/h_icon.png" alt="" class="image-icon"></div>
       <div class="title fancy-text">Campus</div>
     </div>
-    <main class="mdc-typography roboto-font">
+    <main class="mdc-typography body-font">
+
       <div class="container form-container" id="page">
+nddjdjdjjjdjkjdjjjjdj
       </div>
       
       
     </main>
     <br>
     
-    <div class="footer roboto-font">
+    <div class="footer body-font">
       <div class="link-container">
           <div class="footer-section"><a href="#">Home</a></div>
           <div class="footer-section"><a href="#">About us</a></div>
@@ -71,76 +63,11 @@
     </div>
         <!-- update the version number as needed -->
         <script defer src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
-        <!-- include only the Firebase features as you need -->
         <script defer src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
         <script defer src="/__/firebase/9.6.1/firebase-database-compat.js"></script>
         <script defer src="/__/firebase/9.6.1/firebase-firestore-compat.js"></script>
-        <!-- <script defer src="/__/firebase/9.6.1/firebase-functions-compat.js"></script> -->
-        <!-- <script defer src="/__/firebase/9.6.1/firebase-messaging-compat.js"></script> -->
         <script defer src="/__/firebase/9.6.1/firebase-storage-compat.js"></script>
-        <!-- <script defer src="/__/firebase/9.6.1/firebase-analytics-compat.js"></script> -->
-        <!-- <script defer src="/__/firebase/9.6.1/firebase-remote-config-compat.js"></script> -->
-        <!-- <script defer src="/__/firebase/9.6.1/firebase-performance-compat.j s"></script> -->
-        <!-- 
-          initialize the SDK after all desired features are loaded, set useEmulator to false
-          to avoid connecting the SDK to running emulators.
-        -->
-        <script defer src="/__/firebase/init.js?useEmulator=false"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        
-      
-
-      
-      
-    // //   get options page
-    // getPage("registration/options.html").then((data)=>{
-    //     let location = document.getElementById("page");
-    //     displayPage(data, location);
-    //     let options = document.getElementById('options');
-    //     options.classList.remove('hidden');
-    //     options.classList.add('animate__slideInUp');
-        
-    // }).catch((error)=>{
-    //     console.log(error);
-    // });
-
-    //   get form1
-    // getPage("registration/form1.html").then((data)=>{
-    //     let location = document.getElementById("page");
-    //     displayPage(data, location);
-    //     var form1 = document.getElementById('form1');
-    //     form1.classList.remove('hidden');
-    //     form1.classList.add('animate__slideInRight');
-    //     form1.addEventListener('submit', function(event){
-    //         event.preventDefault();
-    //         let value = document.getElementById('email').value;
-    //         saveEmail('email', value);
-    //         // form1.classList.add('hidden');
-    //         // form2.classList.remove('hidden');
-    //     });
-    // }).catch((error)=>{
-    //     console.log(error);
-    // });
-      
-     
-        
-      });
-      
-    </script>
-    <script src="src/index.js" defer></script>
+        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        <script src="src/index.js" defer></script>
   </body>
 </html>

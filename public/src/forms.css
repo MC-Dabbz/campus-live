@@ -28,4 +28,8 @@ form input:focus {
   .hidden{
       display: none;
   }
+form .visibility {
+    margin-left: -30px;
+    cursor: pointer;
+}
   
