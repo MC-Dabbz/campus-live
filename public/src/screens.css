@@ -22,7 +22,7 @@
 /*Phones and Tablets in Landscape*/
 @media (orientation: landscape) and (max-width: 1007px){
     #side-image{
-        background-image: url("assets/background-2.jpg");
+        background-image: url("assets/background-2-small.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         width: 50%;
@@ -64,7 +64,7 @@
 /*Laptops*/
 @media (min-width: 1008px){
     #side-image{
-        background-image: url("assets/background-2.jpg");
+        background-image: url("assets/background-2-small.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         width: 50%;
