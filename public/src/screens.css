@@ -7,6 +7,10 @@
         width:261px;
         height:auto;
     }
+    #side-image{
+        display: none;
+        float:right;
+    }
 }
 /*Phones and tablets in Potrait*/
 @media (orientation: potrait) and (max-width: 1007px){
@@ -17,20 +21,41 @@
 }
 /*Phones and Tablets in Landscape*/
 @media (orientation: landscape) and (max-width: 1007px){
-    body{
-        background-image: url("assets/tab-landing-rotated.png");
+    #side-image{
+        background-image: url("assets/background-2.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
-        background-size:50% 100%;
+        width: 50%;
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: fixed;
+        left: 0px;
+        }
+        .spinner{
+            right: 21%;
+            top: 20%;
+            left: unset;
         }
     .container.form-container, #page{
         width: 50%;
         float: right;
+        margin-top: 70px;
     }
-    .footer.roboto-font{
-        width: 50%;
+    form{
+        width: 70%;
+        margin: 0px auto;
+    }
+    .footer{
         float: left;
         position: absolute;
+        width: 50%;
+        color: #ffffffc7;
+        bottom: 0px;
+        left:0px;
+    }
+    .footer-section a {
+        color: #f3f3f3d4;
     }
     .header{
         display:none;
@@ -38,20 +63,41 @@
 }
 /*Laptops*/
 @media (min-width: 1008px){
-    body{
-        background-image: url("assets/tab-landing-rotated.png");
+    #side-image{
+        background-image: url("assets/background-2.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
-        background-size:50% 100%;
+        width: 50%;
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        position: fixed;
+        left: 0px;
         }
     .container.form-container, #page{
         width: 50%;
         float: right;
+        margin-top: 70px;
     }
-    .footer.roboto-font{
-        width: 50%;
+    form{
+        width: 70%;
+        margin: 0px auto;
+    }
+    .spinner{
+        right: 21%;
+        left: unset;
+        top: 20%;
+    }
+    .footer{
         float: left;
         position: absolute;
+        width: 50%;
+        color: #f3f3f3dc;
+        bottom: 0px;
+        left:0px;
+    }
+    .footer-section a {
+        color: #f3f3f3e8;
     }
     .header{
         display:none;

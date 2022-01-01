@@ -11,3 +11,16 @@
 @import "screens.css";
 @import "check_box.css";
 @import "progressBar.css";
+
+.text-container{
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 30%;
+    color: #ffffff;
+}
+.side-wraper{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #2a66cda8;
+}

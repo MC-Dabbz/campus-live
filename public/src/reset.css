@@ -100,8 +100,8 @@ html,body{
 a{
     text-decoration: none;
 }
-p,p1,p2,p3,h1,h2,h3,a{
-    line-height: 1.4rem !important;
+p,p1,p2,p3,a{
+    line-height: 2rem !important;
 }
 input{
     border: none;
