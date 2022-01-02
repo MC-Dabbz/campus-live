@@ -1,5 +1,14 @@
+
+/*
+View Ports to be using
+$ means on
+$desktop: 1200px 
+$laptop: 1024px
+$tablet: 768px
+$phone: 480px
+*/
 /*Just in case*/
-@media (max-width: 261px){
+/* @media (max-width: 261px){
     .header{
         width:261px;
     }
@@ -8,21 +17,18 @@
         height:auto;
     }
     
-}
+} */
 #side-image{
     display: none;
     float:right;
 
 }
-/*Phones and tablets in Potrait*/
-@media (max-width: 1007px){
-    .container.form-container, #page{
-        width:auto;
-        height:auto;
-    }
+/*laptop going up*/
+@media (min-width: 768px){
+
 }
-/*Phones and Tablets in Landscape*/
-@media (orientation: landscape) and (max-width: 1007px){
+/*tablet going up*/
+@media (min-width: 768px){
     #side-image{
         background-image: url("assets/background-2-small.jpg");
         background-attachment: fixed;
@@ -76,58 +82,4 @@
         display:none;
     }
 }
-/*Laptops*/
-@media (min-width: 1008px){
-    #side-image{
-        background-image: url("assets/background-2-small.jpg");
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        width: 50%;
-        height: 100vh;
-        background-position: center;
-        background-size: cover;
-        position: fixed;
-        left: 0px;
-        display: block;
-        }
-        .text-container{
-            width: 80%;
-            margin: 0px auto;
-            margin-top: 30%;
-            color: #ffffff;
-        }
-        .side-wraper{
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            background-color: #2a66cda8;
-        }
-    .container.form-container, #page{
-        width: 50%;
-        float: right;
-        margin-top: 70px;
-    }
-    form{
-        width: 70%;
-        margin: 0px auto;
-    }
-    .spinner{
-        right: 21%;
-        left: unset;
-        top: 20%;
-    }
-    .footer{
-        float: left;
-        position: absolute;
-        width: 50%;
-        color: #f3f3f3dc;
-        bottom: 0px;
-        left:0px;
-    }
-    .footer-section a {
-        color: #f3f3f3e8;
-    }
-    .header{
-        display:none;
-    }
-}
+
