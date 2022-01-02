@@ -33,7 +33,7 @@ $phone: 480px
         background-image: url("assets/background-2-small.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
-        width: 50%;
+        width: 40%;
         height: 100vh;
         background-position: center;
         background-size: cover;
@@ -54,12 +54,12 @@ $phone: 480px
             background-color: #2a66cda8;
         }
         .spinner{
-            right: 21%;
+            right: 24%;
             top: 20%;
             left: unset;
         }
     .container.form-container, #page{
-        width: 50%;
+        width: 60%;
         float: right;
         margin-top: 70px;
     }
@@ -70,10 +70,11 @@ $phone: 480px
     .footer{
         float: left;
         position: absolute;
-        width: 50%;
+        width: 40%;
         color: #ffffffc7;
         bottom: 0px;
         left:0px;
+        background: none;
     }
     .footer-section a {
         color: #f3f3f3d4;

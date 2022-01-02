@@ -1,0 +1,14 @@
+.greeting{
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #515151;
+}
+.greeting .icon{
+    font-size: 25px;
+}
+@media (min-width: 1024px){
+    .greeting{
+        margin-left: 10px;
+    }
+}

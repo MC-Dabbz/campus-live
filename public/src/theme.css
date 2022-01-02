@@ -1,8 +1,8 @@
 .primary-bg{
-    background-color: #387ef5;
+    background-color: #2f6dd7;
 }
 .secondary-bg{
-    background-color: #F24B59;
+    background-color: #db3529;
 }
 .on-primary{
     color: #FFF;
@@ -18,10 +18,10 @@
     color: #444444;
 }
 .primary-text{
-    color: #387ef5;
+    color: #2f6dd7;
 }
 .secondary-text{
-    color: #F24B59;
+    color: #db3529;
 }
 .tetiary-text{
     color: #84BF9E;

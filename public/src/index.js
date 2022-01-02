@@ -3,6 +3,11 @@ var req = new XMLHttpRequest();
 const position = document.getElementById("page");
 const spinner = document.getElementById("spinner");
 
+var $ = function (selector) {
+    // removes the buden pf using document.getSomething
+  return document.querySelectorAll(selector);
+};
+
 function loading(value){
     if(value == true){
         spinner.classList.remove("hidden");
@@ -35,117 +40,117 @@ function displayPage(data, position){ // display page content at told position
     position.innerHTML = data;
 }
 
-function getForm(link){
-    getPage(link).then((data)=>{
-        displayPage(data, page);
-        let hash = this.location.hash;
-        let splits = hash.split("#");
-        if(splits[2] == "error"){
-            document.getElementById("email-help").classList.remove("hidden");
+// function getForm(link){
+//     getPage(link).then((data)=>{
+//         displayPage(data, page);
+//         let hash = this.location.hash;
+//         let splits = hash.split("#");
+//         if(splits[2] == "error"){
+//             document.getElementById("email-help").classList.remove("hidden");
             
-            document.getElementById("email").setAttribute('value', localStorage.getItem("email"));
-            console.log("email error");
-        }
-        let it = document.getElementsByClassName('registration');
-        let item = it[0].id;
-        let thing = document.getElementById(item);
-        thing.classList.remove('hidden');
-        thing.classList.add("animate__slideInRight");
-        let input_target = thing.getAttribute('input_name');
-        let next_page = thing.getAttribute('next_form');
-        thing.addEventListener('submit', function(event){
-            thing.classList.add("hidden");
-            loading(true);
-            event.preventDefault();
+//             document.getElementById("email").setAttribute('value', localStorage.getItem("email"));
+//             console.log("email error");
+//         }
+//         let it = document.getElementsByClassName('registration');
+//         let item = it[0].id;
+//         let thing = document.getElementById(item);
+//         thing.classList.remove('hidden');
+//         thing.classList.add("animate__slideInRight");
+//         let input_target = thing.getAttribute('input_name');
+//         let next_page = thing.getAttribute('next_form');
+//         thing.addEventListener('submit', function(event){
+//             thing.classList.add("hidden");
+//             loading(true);
+//             event.preventDefault();
             
-            if(next_page !== "done-3"){
-                let value = document.getElementById(input_target).value;
-                saveData(input_target, value);
-            }
+//             if(next_page !== "done-3"){
+//                 let value = document.getElementById(input_target).value;
+//                 saveData(input_target, value);
+//             }
             
-            if(next_page === "registration/form3.html"){
-                firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
-                        .then((userCredential) => {
-                            // Signed in 
-                            var user = userCredential.user;
-                            console.log('signed in'+user);
+//             if(next_page === "registration/form3.html"){
+//                 firebase.auth().createUserWithEmailAndPassword(localStorage.getItem('email'), localStorage.getItem('password'))
+//                         .then((userCredential) => {
+//                             // Signed in 
+//                             var user = userCredential.user;
+//                             console.log('signed in'+user);
                            
-                }).catch((error) => {
-                    loading(false);
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorMessage);
-                        getForm("registration/form1.html#error");
+//                 }).catch((error) => {
+//                     loading(false);
+//                     var errorCode = error.code;
+//                     var errorMessage = error.message;
+//                     console.log(errorMessage);
+//                         getForm("registration/form1.html#error");
 
-                    // ..
-                });
-            }
-            if(next_page == "done-2"){
-                if(localStorage.getItem("account_type") === "user"){
-                    firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
-                        email: localStorage.getItem('email'),
-                        student_id: localStorage.getItem('student-number'),
-                        first_name: localStorage.getItem('first_name'),
-                        last_name: localStorage.getItem('last_name'),
-                        phone_number: localStorage.getItem('phone_number'),
-                        account_type: localStorage.getItem('account_type'),
-                    }).then(() => {
-                        getPage("registration/success.html").then((data)=>{
-                            displayPage(data, page);
-                            loading(false);
-                        // ...
-                    }).catch((error)=>{
-                        console.log(error);
-                        loading(false);
-                    });
+//                     // ..
+//                 });
+//             }
+//             if(next_page == "done-2"){
+//                 if(localStorage.getItem("account_type") === "user"){
+//                     firebase.firestore().collection("campus-users").doc(localStorage.getItem('email')).set({
+//                         email: localStorage.getItem('email'),
+//                         student_id: localStorage.getItem('student-number'),
+//                         first_name: localStorage.getItem('first_name'),
+//                         last_name: localStorage.getItem('last_name'),
+//                         phone_number: localStorage.getItem('phone_number'),
+//                         account_type: localStorage.getItem('account_type'),
+//                     }).then(() => {
+//                         getPage("registration/success.html").then((data)=>{
+//                             displayPage(data, page);
+//                             loading(false);
+//                         // ...
+//                     }).catch((error)=>{
+//                         console.log(error);
+//                         loading(false);
+//                     });
                     
-                }).catch((error)=>{
-                    loading(false);
-                    var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log(errorMessage);
-                        console.log(errorCode);
-                });
-                } else{
-                    getForm("registration/form7.html");
-                }
-                return false;
-        }else if(next_page == "done-3"){
-            let value = document.getElementById("check-box-2").value;
-            if(value === "checked"){
-                submitImages().then((data) =>{
-                    document.getElementById("cover").classList.remove("hidden");
-                    getPage("registration/success.html").then((data)=>{
-                        displayPage(data, page);
-                        loading(false);
-                    // ...
-                }).catch((error)=>{
-                    console.log(error);
-                    loading(false);
-                });
+//                 }).catch((error)=>{
+//                     loading(false);
+//                     var errorCode = error.code;
+//                         var errorMessage = error.message;
+//                         console.log(errorMessage);
+//                         console.log(errorCode);
+//                 });
+//                 } else{
+//                     getForm("registration/form7.html");
+//                 }
+//                 return false;
+//         }else if(next_page == "done-3"){
+//             let value = document.getElementById("check-box-2").value;
+//             if(value === "checked"){
+//                 submitImages().then((data) =>{
+//                     document.getElementById("cover").classList.remove("hidden");
+//                     getPage("registration/success.html").then((data)=>{
+//                         displayPage(data, page);
+//                         loading(false);
+//                     // ...
+//                 }).catch((error)=>{
+//                     console.log(error);
+//                     loading(false);
+//                 });
                     
-                }).catch((error)=>{
-                    console.log(error);
-                });
-            } else{
-                return false;
-            }
+//                 }).catch((error)=>{
+//                     console.log(error);
+//                 });
+//             } else{
+//                 return false;
+//             }
             
-        } else{
-                getForm(next_page);
+//         } else{
+//                 getForm(next_page);
 
-            }
-          })
-    })
-}
+//             }
+//           })
+//     })
+// }
 
 function hijackRequests(){
     window.addEventListener('hashchange', function (e) {
             let hash = this.location.hash;
             let link = hash.substring(1);
             let splits = hash.split("#");
-            if (link ==="" || link == "registration/options.html") {
-                getPage("registration/options.html").then((data)=>{
+            if (link ==="" || link == "registration/emailPassword.html") {
+                getPage("registration/emailPassword.html").then((data)=>{
                     displayPage(data, position);
                     let options = document.getElementById('options');
                     options.classList.remove('hidden');
@@ -174,8 +179,8 @@ hijackRequests();
  let hash = this.location.hash;
 let link = hash.substring(1);
 let splits = hash.split("#");
-    if (link ==="" || link == "registration/options.html") {
-        getPage("registration/options.html").then((data)=>{
+    if (link ==="" || link == "registration/emailPassword.html") {
+        getPage("registration/emailPassword.html").then((data)=>{
             displayPage(data, position);
             let options = document.getElementById('options');
             options.classList.remove('hidden');
@@ -343,4 +348,41 @@ curImg.onload = function(){
         // do whatever here, add it to the background, append the image ect.
         document.getElementById("side-image").style.backgroundImage = "url('"+curImg.src+"')";  
     }
+
+//function for loging in users#
+function login(email, password){
+    return new Promise((resolve, reject)=>{
+        firebase.auth().signInWithEmailAndPassword(email, password).then((userCredential)=>{
+            // signed in
+            var user = userCredential.user;
+            resolve("success");
+        }).catch((error)=>{
+        // you can view either error.code or error.message
+        reject(error);
+    });
+});
+}
+// this functions handles the submition of email and password in login
+
+window.callLogin = function promptLogin(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    
+    
+    login(email, password).then((responce)=>{
+        //redirect to success page
+        getPage("registration/success.html").then((data)=>{
+            displayPage(data, page);
+            loading(false);
+        // ...
+    }).catch((error)=>{
+        console.log(error);
+        loading(false);
+    });
+    }).catch((error)=>{
+        console.log(error.message);
+    })
+}
+
+
 });

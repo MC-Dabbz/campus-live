@@ -4,23 +4,36 @@ form{
 }
 form label{
     width: 100%;
+    font-size: 14px;
+    font-weight: 200;
     
 }
 form input{
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 18px;
+    overflow: hidden;
+    width: 97%;
+    padding: 2px 1.5%;
+    margin-top: 5px;
+    margin-bottom: 10px;
     height: 2.9rem;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border: 2px solid #797979;
-    background-color: #387ef52e;
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #474747;
+    background-color: #b3b3b321;
+}
+form .input-container{
+    width:100%;
+}
+@media (min-width: 1024px){
+    form .input-container{
+        width: 45%;
+        float: left;
+        margin: 10px;
+    }
 }
 form input:focus {
-    border-bottom: 2px solid #387ef5; 
+    border: 1px solid #2196f3; 
   }
 .form-container{
     min-height: 250px;

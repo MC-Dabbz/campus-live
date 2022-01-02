@@ -9,3 +9,6 @@
 .full-width{
     width: 100%;
 }
+#page{
+    min-height: 350px;
+}
