@@ -8,6 +8,11 @@ form label{
     font-weight: 200;
     
 }
+
+.invalid{
+    border: 1px solid #b327cb;
+    color: #b327cb;
+}
 form input{
     overflow: hidden;
     width: 97%;
@@ -24,6 +29,7 @@ form input{
 }
 form .input-container{
     width:100%;
+    margin-bottom: 5px;
 }
 @media (min-width: 1024px){
     form .input-container{

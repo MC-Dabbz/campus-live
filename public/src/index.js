@@ -156,6 +156,7 @@ function hijackRequests(){
                     options.classList.remove('hidden');
                     options.classList.add('animate__slideInUp');
                     document.getElementById("email").setAttribute('value', localStorage.getItem("email"));
+                    greetGuest();
 
                 }).catch((error)=>{
                     console.log("getting "+link);
@@ -185,6 +186,7 @@ let splits = hash.split("#");
             let options = document.getElementById('options');
             options.classList.remove('hidden');
             options.classList.add('animate__slideInUp');
+            greetGuest();
             
         }).catch((error)=>{
             console.log(error);
@@ -365,9 +367,26 @@ function login(email, password){
 // this functions handles the submition of email and password in login
 
 window.callLogin = function promptLogin(){
+    // reset everything....
+    $("#email")[0].classList.remove("invalid");
+    $("#email")[0].setAttribute("disabled", true);
+    $("#email-container")[0].classList.remove("animate__shakeX");
+    $("#email-container")[0].classList.remove("error-text");
+    $("#email-error-text-2")[0].classList.add("hidden");
+    $("#password")[0].classList.remove("invalid");
+    $("#password")[0].setAttribute("disabled", true);
+    $("#password-container")[0].classList.remove("animate__shakeX");
+    $("#password-container")[0].classList.remove("error-text");
+    $("#password-error-text-1")[0].classList.add("hidden");
+
+    //buttons
+    $("button")[0].disabled = true;
+    $("button")[1].disabled = false;
+
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    
+    $("#email").disabled = true;
+    $("button").disabled = true;
     
     login(email, password).then((responce)=>{
         //redirect to success page
@@ -380,9 +399,59 @@ window.callLogin = function promptLogin(){
         loading(false);
     });
     }).catch((error)=>{
-        console.log(error.message);
+        console.log(error.code);
+        if(error.code === "auth/user-not-found"){
+            shakeEmail();
+            $("#password")[0].removeAttribute("disabled");
+        } else if(error.code === "auth/wrong-password"){
+            // show option for reseting password
+            shakePassword();
+            $("#email")[0].removeAttribute("disabled");
+        }else{
+            shakeEmail();
+            shakePassword();
+        }
+        $("button")[0].disabled = false;
+        $("button")[1].disabled = false;
     })
 }
 
+function shakeEmail(){
+    $("#email")[0].classList.add("invalid");
+    $("#email")[0].removeAttribute("disabled");
+    $("#email-container")[0].classList.add("animate__shakeX");
+    $("#email-container")[0].classList.add("error-text");
+    $("#email-error-text-2")[0].classList.remove("hidden");
+}
+function shakePassword(){
+    $("#password")[0].classList.add("false");
+    $("#password")[0].removeAttribute("disabled");
+    $("#password-container")[0].classList.add("animate__shakeX");
+    $("#password-container")[0].classList.add("error-text");
+    $("#password-error-text-1")[0].classList.remove("hidden");
+}
+
+// greetings to our guest
+function  greetGuest(){
+    let welcome;  
+    let date = new Date();  
+    let hour = date.getHours();  
+    let minute = date.getMinutes();  
+    let second = date.getSeconds();  
+    if (minute < 10) {  
+      minute = "0" + minute;  
+    }  
+    if (second < 10) {  
+      second = "0" + second;  
+    }  
+    if (hour < 12) {  
+      welcome = "morning";  
+    } else if (hour < 17) {  
+      welcome = "afternoon";  
+    } else {  
+      welcome = "evening";  
+    }
+    $("#greetings-text")[0].innerHTML = welcome;
+}
 
 });
