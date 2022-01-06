@@ -31,7 +31,6 @@ $phone: 480px
 @media (min-width: 768px){
     #side-image{
         background-image: url("assets/background-2-small.jpg");
-        background-attachment: fixed;
         background-repeat: no-repeat;
         width: 40%;
         height: 100vh;
@@ -69,7 +68,7 @@ $phone: 480px
     }
     .footer{
         float: left;
-        position: absolute;
+        position: fixed;
         width: 40%;
         color: #ffffffc7;
         bottom: 0px;
