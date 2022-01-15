@@ -67,7 +67,7 @@ function getForm(link){
             initEmailPasswordCheck();
         } else{
             if(hash.substring(1) === "registration/studentNumber.html"){
-                initSomethingOrNothing(9, 10);
+                initSomethingOrNothing(6, 15);
 
             } else if(hash.substring(1) === "registration/phone-number.html"){
                 initSomethingOrNothing(9, 10);
@@ -78,7 +78,7 @@ function getForm(link){
                 initEmailCheck();
             }
             else{
-                initSomethingOrNothing(4, 25);
+                initSomethingOrNothing(3, 20);
             }
         }
         let it = document.getElementsByClassName('registration');
@@ -151,18 +151,23 @@ function getForm(link){
                 loading(false);
                 uploading(true);
                 submitImages().then((data) =>{
-                    document.getElementById("cover").classList.remove("hidden");
+                    uploading(false);
+                    loading(true);
                     getPage("registration/success.html").then((data)=>{
                         displayPage(data, page);
-                        uploading(false);
+                        
+                        loading(false);
                     // ...
                 }).catch((error)=>{
                     console.log(error);
                     uploading(false);
+                    loading(false);
                 });
                     
                 }).catch((error)=>{
                     console.log(error);
+                    uploading(false);
+                    loading(false);
                 });
             } else{
                 return false;
@@ -459,7 +464,7 @@ window.callCreateAccountAndVerifyEmail = function callCreateAccountAndVerifyEmai
         // redirect to email verification information page
         getPage("registration/emailVerification.html").then((data)=>{
             displayPage(data, page);
-            saveData("email", email);
+            saveData("email", email.value);
             $("#email-address")[0].innerHTML = email.value;
             loading(false);
             // ...
