@@ -1,6 +1,6 @@
 form{
-    margin-top: 20px;
-    /* padding: 1rem; */
+    margin-top: 30px;
+    padding-inline: 1rem;
 }
 @media (max-width: --laptop){
     form{
@@ -51,9 +51,12 @@ form .input-container{
 form input:focus {
     border: 1px solid #2196f3; 
   }
-  form input:hover{
-      filter: brightness(var(--hover-brightness));
+  @media (max-width:--laptop) {
+    form input:hover{
+        filter: brightness(var(--hover-brightness));
+    }
   }
+  
 .form-container{
     min-height: 250px;
 }
