@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 var req = new XMLHttpRequest();
 const position = document.getElementById("page");
-const spinner = document.getElementById("spinner");
+const progress = document.getElementById("cover");
 var $ = function (selector) {
     // removes the buden pf using document.getSomething
   return document.querySelectorAll(selector);
@@ -9,9 +9,17 @@ var $ = function (selector) {
 
 function loading(value){
     if(value == true){
-        spinner.classList.remove("hidden");
+        progress.classList.remove("hidden");
     }else{
-        spinner.classList.add("hidden");
+        progress.classList.add("hidden");
+    }
+}
+function uploading(value){
+    if(value == true){
+        progress.classList.remove("hidden");
+        // document.getEle
+    }else{
+        progress.classList.add("hidden");
     }
 }
 
@@ -50,8 +58,25 @@ function getForm(link){
             document.getElementById("email").setAttribute('value', localStorage.getItem("email"));
             console.log("email error");
         }
-        if(link ==="" || link == "registration/emailPassword.html"){
+        console.log(hash.substring(1));
+        if(hash.substring(1) === "" || hash.substring(1) === "registration/emailPassword.html"){
             greetGuest();
+            initEmailPasswordCheck();
+        } else{
+            if(hash.substring(1) === "registration/studentNumber.html"){
+                initSomethingOrNothing(9, 10);
+
+            } else if(hash.substring(1) === "registration/phone-number.html"){
+                initSomethingOrNothing(9, 10);
+            }
+            else if(hash.substring(1) === "registration/password-reset.html"){
+                console.log("Error is here");
+
+                initEmailCheck();
+            }
+            else{
+                initSomethingOrNothing(4, 25);
+            }
         }
         let it = document.getElementsByClassName('registration');
         let item = it[0].id;
@@ -148,34 +173,33 @@ function getForm(link){
 
 function hijackRequests(){
     window.addEventListener('hashchange', function (e) {
+        loading(true);
             let hash = this.location.hash;
             let link = hash.substring(1);
             let splits = hash.split("#");
             if (link ==="" || link == "registration/emailPassword.html") {
                 getPage("registration/emailPassword.html").then((data)=>{
                     displayPage(data, position);
-                    let options = document.getElementById('options');
-                    options.classList.remove('hidden');
-                    options.classList.add('animate__slideInUp');
-                    document.getElementById("email").setAttribute('value', localStorage.getItem("email"));
                     greetGuest();
-
+                    initEmailPasswordCheck();
+                    loading(false);
                 }).catch((error)=>{
-                    console.log("getting "+link);
+                    console.log("getting error "+link + error);
+                    loading(false);
                 })
                 
             } else if(link == "registration/password-reset.html"){
-                loading(true);
                 getPage(link).then((data) => {
                     displayPage(data, position);
                     loading(false);
+                    initEmailCheck();
                     let form = document.getElementById("password-reset");
                     form.classList.remove('hidden');
                     form.classList.add("animate__slideInRight");
                     form.addEventListener('submit', function(event){
                         event.preventDefault();
                         form.classList.add("hidden");
-                        loading(true);
+                        loading(false);
                         sendPasswordReset(getPage, displayPage, position, loading, $);
 
                     });
@@ -393,31 +417,27 @@ function login(email, password){
 
 
 // function to call createAccountAndVerifyEmail
-window.callCreateAccountAndVerifyEmail = function callCreateAccountAndVerifyEmail(){
-    $("#email")[0].classList.remove("invalid");
-    $("#email")[0].setAttribute("disabled", true);
-    $("#email-container")[0].classList.remove("animate__shakeX");
-    $("#email-container")[0].classList.remove("error-text");
-    $("#email-error-text-2")[0].classList.add("hidden");
-    $("#password")[0].classList.remove("invalid");
-    $("#password")[0].setAttribute("disabled", true);
-    $("#password-container")[0].classList.remove("animate__shakeX");
-    $("#password-container")[0].classList.remove("error-text");
-    $("#password-error-text-1")[0].classList.add("hidden");
-    //buttons
-    $("button")[0].disabled = false;
-    $("button")[1].disabled = false;
-
+window.callCreateAccountAndVerifyEmail = function callCreateAccountAndVerifyEmail(emailAddress, passwordInput){
+    loading(true);
     // get email and password
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let email = emailAddress;
+    let password = passwordInput;
+    let res = CheckPassword(password);
+    if(!res){
+        // if the function returns false then diisplay that password doesn't meet the criteria
+        password.classList.add('invalid');
+        password.classList.add('animate__shakeX');
+        document.getElementById('password-help-text').classList.remove('hidden');
+        return false;
+    }
 
-    createAccountAndVerifyEmail(email, password).then((userCredential)=>{
+    createAccountAndVerifyEmail(email.value, password.value).then((userCredential)=>{
         saveData('userValuable', userCredential.user.uid);
         const user = userCredential.user;
         // CHECKS IF AUTH STATUS HAS CHANGED
         console.log("here");
     firebase.auth().onAuthStateChanged(function(user) { 
+        
         if (user.emailVerified) {
           console.log('Email is verified');
         }
@@ -431,7 +451,7 @@ window.callCreateAccountAndVerifyEmail = function callCreateAccountAndVerifyEmai
         getPage("registration/emailVerification.html").then((data)=>{
             displayPage(data, page);
             saveData("email", email);
-            $("#email-address")[0].innerHTML = email;
+            $("#email-address")[0].innerHTML = email.value;
             loading(false);
             // ...
         }).catch((error)=>{
@@ -439,7 +459,11 @@ window.callCreateAccountAndVerifyEmail = function callCreateAccountAndVerifyEmai
             loading(false);
         });
     }).catch((error)=>{
+        loading(false);
         console.log(error);
+        document.getElementById("user-exists").classList.remove("hidden");
+        $("#email")[0].classList.add("invalid");
+        $("#email-container")[0].classList.add("error-text");
     })
 }
 // function creates an account for the user and sends email verification
@@ -456,22 +480,9 @@ function createAccountAndVerifyEmail(email, password){
 // this functions handles the submition of email and password in login
 
 window.callLogin = function promptLogin(){
+    loading(true);
     // reset everything....
-    $("#email")[0].classList.remove("invalid");
-    $("#email")[0].setAttribute("disabled", true);
-    $("#email-container")[0].classList.remove("animate__shakeX");
-    $("#email-container")[0].classList.remove("error-text");
-    $("#email-error-text-2")[0].classList.add("hidden");
-    $("#password")[0].classList.remove("invalid");
-    $("#password")[0].setAttribute("disabled", true);
-    $("#password-container")[0].classList.remove("animate__shakeX");
-    $("#password-container")[0].classList.remove("error-text");
-    $("#password-error-text-1")[0].classList.add("hidden");
-
-    //buttons
-    $("button")[0].disabled = false;
-    $("button")[1].disabled = false;
-
+    // resetEmailPasswordContainer();
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     
@@ -487,36 +498,20 @@ window.callLogin = function promptLogin(){
     });
     }).catch((error)=>{
         console.log(error.code);
-        if(error.code === "auth/user-not-found"){
-            shakeEmail();
-            $("#password")[0].removeAttribute("disabled");
-        } else if(error.code === "auth/wrong-password"){
-            // show option for reseting password
-            shakePassword();
-            $("#email")[0].removeAttribute("disabled");
-        }else{
-            shakeEmail();
-            shakePassword();
-        }
-        $("button")[0].disabled = false;
-        $("button")[1].disabled = false;
+        shakeEmailPasswordContainer();
+        loading(false);
     })
 }
 
-function shakeEmail(){
+function shakeEmailPasswordContainer(){
     $("#email")[0].classList.add("invalid");
-    $("#email")[0].removeAttribute("disabled");
-    $("#email-container")[0].classList.add("animate__shakeX");
-    $("#email-container")[0].classList.add("error-text");
-    $("#email-error-text-2")[0].classList.remove("hidden");
+    $("#password")[0].classList.add("invalid");
+    $("#email-password-error")[0].classList.remove("hidden");
+    $("#email-password-container")[0].classList.add("animate__shakeX");
+    $("#email-password-container")[0].classList.add("error-text");
+
 }
-function shakePassword(){
-    $("#password")[0].classList.add("false");
-    $("#password")[0].removeAttribute("disabled");
-    $("#password-container")[0].classList.add("animate__shakeX");
-    $("#password-container")[0].classList.add("error-text");
-    $("#password-error-text-1")[0].classList.remove("hidden");
-}
+
 
 // greetings to our guest
 function  greetGuest(){
@@ -567,14 +562,16 @@ function getValueFromUrl(urli, valueNeeded){
 }
 
 function sendPasswordReset(getPage, displayPage, position, loading, $) {
+    loading(true);
     let email = $("#email")[0].value;
     firebase.auth().sendPasswordResetEmail(email).then((responce) => {
         console.log("password reset email sent successfully");
         // redirect to email verification information page
         getPage("registration/password-reset-confirmation.html").then((data) => {
             displayPage(data, position);
-            loading(false);
             $("#email-address")[0].innerHTML = email;
+            loading(false);
+
             // ...
         }).catch((error) => {
             console.log(error);
@@ -588,6 +585,96 @@ function sendPasswordReset(getPage, displayPage, position, loading, $) {
     });
 }
 
+// this function checks whether the password entered meets the following criteria
+// 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter
+function CheckPassword(inputtxt) { 
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if(inputtxt.value.match(passw)) { 
+        return true;
+    }
+    else{ 
+        return false;
+    }
+}
+function initEmailPasswordCheck(){
+    document.getElementById("email").addEventListener("keyup", function(e){
+        let inputText = document.getElementById("email");
+        let res = ValidateEmail(inputText);
+        if(res){
+            document.getElementById("email-help-text").classList.add("hidden");
+            document.getElementById("password").removeAttribute("disabled");;
+        } else{
+            document.getElementById("email-help-text").classList.remove("hidden");
+            document.getElementById("password").setAttribute("disabled", true);
+            document.getElementsByClassName("button")[0].classList.add("disabled-btn");
+            document.getElementsByClassName("button")[1].classList.add("disabled-outline");
+
+        }
+    });
+    document.getElementById("password").addEventListener("keyup", function(e){
+        let inputText = document.getElementById("password");
+        let res = CheckPassword(inputText);
+        if(res){
+            document.getElementById("password-help-text").classList.add("hidden");
+            document.getElementsByClassName("button")[0].classList.remove("disabled-btn");
+            document.getElementsByClassName("button")[1].classList.remove("disabled-outline");
+        } else{
+            document.getElementById("password-help-text").classList.remove("hidden");
+            document.getElementsByClassName("button")[0].classList.add("disabled-btn");
+            document.getElementsByClassName("button")[1].classList.add("disabled-outline");
+        }
+    });
+}
+
+
+
 });
+function ValidateEmail(inputText){
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(inputText.value.match(mailformat)){
+    console.log("Valid email address!");
+    // document.getElementById("email-help-text").classList.remove("hidden");
+    return true;
+    }
+    else{
+    console.log("You have entered an invalid email address!");
+    // document.getElementById("email-help-text").classList.remove("hidden");
+    return false;
+    }
+    }
+function initEmailCheck(){
+    document.getElementById("email").addEventListener("keyup", function(e){
+        let inputText = document.getElementById("email");
+        let res = ValidateEmail(inputText);
+        if(res){
+            document.getElementById("email-help-text").classList.add("hidden");
+            document.getElementById("submit-btn").classList.remove("disabled-btn");
+        } else{
+            document.getElementById("email-help-text").classList.remove("hidden");
+            document.getElementById("submit-btn").classList.add("disabled-btn");
 
+        }
+    });
+}
+function initSomethingOrNothing(min,max){
+    let inputFiled = document.getElementsByTagName("input")[0];
+    inputFiled.addEventListener("keyup", function(){
+        let res = somethingOrNothing(inputFiled.value, min, max);
+        let submitButton = document.getElementById("submit-btn");
+    
+        if(res){
+            submitButton.classList.remove("disabled-btn");
+        } else{
+            submitButton.classList.add("disabled-btn");
+        }
+    });
+}
 
+// this function ensures that the submit function is inactive until some data is put in a form
+function somethingOrNothing(inputText, min, max){
+    if(inputText.length > min && inputText.length <= max){
+        return true;
+    } else{
+        return false;
+    }
+}

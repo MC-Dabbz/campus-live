@@ -23,10 +23,19 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   </head>
   <body>
+    <div class="cover body-font" id="cover">
+  <div class="progress-container-indeterminate">
+    <div class="progress">
+      <div class="indeterminate" id="indeterminate-progress-bar"></div>
+    </div>
+    <div id="upload-helper-text"></div>
+</div>
+  </div>
     <div class="header">
       <div class="icon"><img src="../src/assets/h_icon.png" alt="" class="image-icon"></div>
       <div class="title fancy-text">Campus</div>
     </div>
+  
     <main class="mdc-typography body-font">
       <div class="side-image" id="side-image">
         <div class="side-wraper">
@@ -40,8 +49,7 @@
         
       </div>
       <div class="container form-container" id="page">
-        <form class="registration">
-          <p id="message">Campus saves you time to focus on your studies<br><i>wait a sec while we process your request</i></p>
+        
 
         </form>
    
@@ -68,7 +76,14 @@
 <script defer>
     document.addEventListener('DOMContentLoaded', () => {
       var req = new XMLHttpRequest();
-     
+      const progress = document.getElementById("cover");
+      function loading(value){
+    if(value == true){
+        progress.classList.remove("hidden");
+    }else{
+        progress.classList.add("hidden");
+    }
+}
         //function gets values from a url
 function getParameterByName(urli, valueNeeded){
     let url = new URL(urli);
@@ -93,8 +108,11 @@ function getParameterByName(urli, valueNeeded){
       // Display reset password handler and UI.
       getPasswordForm().then((responce)=>{
         document.getElementById("page").innerHTML = responce;
+        loading(false);
+        initCheckPassword();
       }).catch((error)=>{
         console.log(error);
+        loading(false);
       })
       break;
     case 'recoverEmail':
@@ -122,7 +140,16 @@ function getParameterByName(urli, valueNeeded){
     }
     })
   }
-  window.resetPassword = function resetPassword(){
+  window.resetPassword = function resetPassword(passwordInput){
+    let password = passwordInput;
+    let res = CheckPassword(password);
+    if(!res){
+        // if the function returns false then diisplay that password doesn't meet the criteria
+        password.classList.add('invalid');
+        password.classList.add('animate__shakeX');
+        document.getElementById('password-help-text').classList.remove('hidden');
+        return false;
+    }
     handleResetPassword(auth, actionCode, lang);
   }
   function handleVerifyEmail(auth, actionCode, lang) {
@@ -130,23 +157,42 @@ function getParameterByName(urli, valueNeeded){
   // parameter.
   // Try to apply the email verification code.
   auth.applyActionCode(actionCode).then((resp) => {
+    loading(false);
     // Email address has been verified.
-
+  //   <div class="button-container">
+  //     <button type="button" onclick="callCreateAccountAndVerifyEmail();" class="button button-short primary-btn button-font-size primary-bg on-primary">Register</button>
+  //     <button type="button" onclick="callLogin();" class="button secondary-btn button-short secondary-btn button-font-size secondary-text">Login</button>
+  // </div>  
     // TODO: Display a confirmation message to the user.
-    message.innerHTML = `<form class="registration">
-    <p class="greeting"><i class="icon material-icons tetiary-text">check_circle</i><br>Your email address has been verified click <a href='../registration.html#registration/studentNumber.html'>here</a> to complete your registration.</p>
-    </form>`;
+    message.innerHTML = `
+    <form class="registration">
+    <div class="message success"><i class="material-icons">check_circle</i>Your email address has been verified click
+      <div class="button-container">
+        <button id="email-btn" href="../registration/studentNumber.html" class="button button-short button-font-size">Continue</button>
+        </div>
+      </div>
+      </form>`;
+      attachEventListenerToButton("email-btn");
     
   }).catch((error) => {
     // Code is invalid or expired. Ask the user to verify their email address
     // again.
     message.innerHTML = `<form class="registration">
-    <p class="greeting"><i class="icon material-icons error-text">error</i><br>Failed to verify email address because the code is invalid or has expired, please click <a href='../registration.html'>here</a> tot retry</p>
+    <div class="message error"><i class="material-icons">error</i>Failed to verify email because of an unknown error.
+      <div class="button-container">
+        <button id="email-btn" href="../registration.html" class="button button-short button-font-size">Retry</button>
+        </div>
+      </div>
+    
     </form>`;
+    attachEventListenerToButton("email-btn");
+    loading(false);
+
   });
 }
 
 function handleResetPassword(auth, actionCode, lang) {
+  loading(true);
   // Localize the UI to the selected language as determined by the lang
   // parameter.
 
@@ -160,6 +206,7 @@ function handleResetPassword(auth, actionCode, lang) {
 
     // Save the new password.
     auth.confirmPasswordReset(actionCode, newPassword).then((resp) => {
+      loading(false);
       // Password reset has been confirmed and new password updated.
 
       // TODO: Display a link back to the app, or sign-in the user directly
@@ -169,19 +216,36 @@ function handleResetPassword(auth, actionCode, lang) {
       // TODO: If a continue URL is available, display a button which on
       // click redirects the user back to the app via continueUrl with
       // additional state determined from that URL's parameters.
-      document.getElementById("page").innerHTML = `<form class="registration">
-    <p class="greeting"><i class="icon material-icons tetiary-text">check_circle</i><br>Your password has been reset, click <a href='../registration.html'>here</a> to login</p>
-    </form>`;
+      message.innerHTML = `<form class="registration">
+    <div class="message success"><i class="material-icons">check_circle</i>Password changed successfully
+      <div class="button-container">
+        <button id="password-btn"  href="../registration.html" class="button button-short button-font-size">Login</button>
+        </div>
+      </div></form>`;
+      attachEventListenerToButton("password-btn");
     }).catch((error) => {
       // Error occurred during confirmation. The code might have expired or the
       // password is too weak.
+      loading(false);
+      message.innerHTML = `<form class="registration">
+    <div class="message error"><i class="material-icons">error</i>An unkown error occured 
+      <div class="button-container">
+        <button id="password-btn" href="../registration.html" class="button button-short button-font-size">Back</button>
+        </div>
+      </div></form>`;
+      attachEventListenerToButton("password-btn");
     });
   }).catch((error) => {
+    loading(false);
     // Invalid or expired action code. Ask user to try to reset the password
     // again.
-    document.getElementById("page").innerHTML = `<form class="registration">
-    <p class="greeting"><i class="icon material-icons error-text">error</i> <br> click here to retry <a href='../registration.html'></a></p>
-    </form>`;
+    message.innerHTML = `<form class="registration">
+    <div class="message error"><i class="material-icons">error</i>An error occured when reseting your password.
+      <div class="button-container">
+        <button id="password-btn"  href="../registration.html" class="button button-short button-font-size">Retry</button>
+        </div>
+      </div></form>`;
+      attachEventListenerToButton("password-btn");
   });
 }
 window.togglePassword = function toggpassword(){
@@ -197,6 +261,41 @@ window.togglePassword = function toggpassword(){
         password.setAttribute('type', "password");
         button.setAttribute("state", "hidden");
     }
+
+}
+function initCheckPassword(){
+  document.getElementById("new-password").addEventListener("keyup", function(e){
+        let inputText = document.getElementById("new-password");
+        let res = CheckPassword(inputText);
+        if(res){
+            document.getElementById("password-help-text").classList.add("hidden");
+            document.getElementById("change-password").classList.remove("disabled-btn");
+        } else{
+            document.getElementById("password-help-text").classList.remove("hidden");
+            document.getElementById("change-password").classList.add("disabled-btn");
+        }
+    });
+}
+// this function checks whether the password entered meets the following criteria
+// 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter
+function CheckPassword(inputtxt) { 
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if(inputtxt.value.match(passw)) { 
+        return true;
+    }
+    else{ 
+        return false;
+    }
+}
+function attachEventListenerToButton(buttonId){
+document.getElementById(buttonId).addEventListener("click", function(e){
+  e.preventDefault();
+  let url = document.getElementById(buttonId).getAttribute("href");
+  loading(true);
+  console.log(url);
+  window.location.href = url;
+  
+})
 
 }
 }, false);

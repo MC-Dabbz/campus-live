@@ -1,7 +1,7 @@
  
   .footer {
-    position: relative;
-    bottom: 0;
+    inset-block-end: 0;
+    position: static;
     left: 0;
     width: 100%;
     box-sizing: border-box;

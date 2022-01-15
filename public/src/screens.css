@@ -1,12 +1,6 @@
 
-/*
-View Ports to be using
-$ means on
-$desktop: 1200px 
-$laptop: 1024px
-$tablet: 768px
-$phone: 480px
-*/
+
+
 /*Just in case*/
 /* @media (max-width: 261px){
     .header{
@@ -23,10 +17,7 @@ $phone: 480px
     float:right;
 
 }
-/*laptop going up*/
-@media (min-width: 768px){
 
-}
 /*tablet going up*/
 @media (min-width: 768px){
     #side-image{
@@ -63,7 +54,7 @@ $phone: 480px
         margin-top: 70px;
     }
     form{
-        width: 70%;
+        width: 60%;
         margin: 0px auto;
     }
     .footer{

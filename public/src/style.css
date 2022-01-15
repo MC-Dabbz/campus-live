@@ -1,9 +1,9 @@
 @import "reset.css";
+@import "layout.css";
+@import "theme.css";
 @import "header.css";
 @import "typography.css";
-@import "layout.css";
 @import "buttons.css";
-@import "theme.css";
 @import "footer.css";
 @import "forms.css";
 @import "cover.css";
@@ -12,4 +12,8 @@
 @import "check_box.css";
 @import "progressBar.css";
 @import "greeting.css";
+@import "messages.css";
 
+.helper-text{
+    font-size:14px;
+}

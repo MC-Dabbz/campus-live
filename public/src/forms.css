@@ -1,6 +1,16 @@
 form{
     margin-top: 20px;
-    padding: 1rem;
+    /* padding: 1rem; */
+}
+@media (max-width: --laptop){
+    form{
+        margin-top: 0px;
+        background-color: #ffffff;
+        padding-inline: 1rem;
+        padding-block-start: 20px;
+        padding-block-end: 2px;
+        width: 50%;
+    }
 }
 form label{
     width: 100%;
@@ -10,13 +20,12 @@ form label{
 }
 
 .invalid{
-    border: 1px solid #b327cb;
-    color: #b327cb;
+    border: 1px solid #ff9800;
 }
 form input{
     overflow: hidden;
-    width: 97%;
-    padding: 2px 1.5%;
+    width: 100%;
+    padding-inline-start: 2px;
     margin-top: 5px;
     margin-bottom: 10px;
     height: 2.9rem;
@@ -38,15 +47,12 @@ form .input-container{
     width:100%;
     margin-bottom: 5px;
 }
-@media (min-width: 1024px){
-    form .input-container{
-        width: 45%;
-        float: left;
-        margin: 10px;
-    }
-}
+
 form input:focus {
     border: 1px solid #2196f3; 
+  }
+  form input:hover{
+      filter: brightness(var(--hover-brightness));
   }
 .form-container{
     min-height: 250px;
