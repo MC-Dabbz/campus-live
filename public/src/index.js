@@ -78,7 +78,7 @@ function getForm(link){
                 initEmailCheck();
             }
             else{
-                initSomethingOrNothing(3, 20);
+                initSomethingOrNothing(2, 20);
             }
         }
         let it = document.getElementsByClassName('registration');
@@ -282,7 +282,8 @@ function saveData(field, value){
 // }
 function submitImages(){
     return new Promise((resolve, reject)=>{
-        uploading(false);
+        loading(false);
+        uploading(true);
         document.getElementById('cover').classList.remove("hidden");
         let student_id_name = document.getElementById("");
         let passport_photo_name = document.getElementById("");
