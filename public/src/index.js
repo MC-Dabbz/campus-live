@@ -17,9 +17,12 @@ function loading(value){
 function uploading(value){
     if(value == true){
         progress.classList.remove("hidden");
-        // document.getEle
+        document.getElementById("progress-container").classList.remove("hidden");
+        document.getElementById("progress-container-indeterminate").classList.add("hidden");
     }else{
         progress.classList.add("hidden");
+        document.getElementById("progress-container").classList.add("hidden");
+        document.getElementById("progress-container-indeterminate").classList.remove("hidden");
     }
 }
 
@@ -145,15 +148,17 @@ function getForm(link){
         else if(next_page == "done-3"){
             let value = document.getElementById("check-box-2").value;
             if(value === "checked"){
+                loading(false);
+                uploading(true);
                 submitImages().then((data) =>{
                     document.getElementById("cover").classList.remove("hidden");
                     getPage("registration/success.html").then((data)=>{
                         displayPage(data, page);
-                        loading(false);
+                        uploading(false);
                     // ...
                 }).catch((error)=>{
                     console.log(error);
-                    loading(false);
+                    uploading(false);
                 });
                     
                 }).catch((error)=>{
@@ -199,7 +204,7 @@ function hijackRequests(){
                     form.addEventListener('submit', function(event){
                         event.preventDefault();
                         form.classList.add("hidden");
-                        loading(false);
+                        loading(true);
                         sendPasswordReset(getPage, displayPage, position, loading, $);
 
                     });
@@ -272,7 +277,7 @@ function saveData(field, value){
 // }
 function submitImages(){
     return new Promise((resolve, reject)=>{
-        loading(false);
+        uploading(false);
         document.getElementById('cover').classList.remove("hidden");
         let student_id_name = document.getElementById("");
         let passport_photo_name = document.getElementById("");
@@ -295,7 +300,7 @@ function submitImages(){
                 if(progress === 100) {
                     document.getElementById('upload-helper-text').innerHTML = "2/2 <br> Upload finished.";
                     document.getElementById("cover").classList.add("hidden");
-                    loading(true);
+                    uploading(true);
                     firebase.firestore().collection("campus-users").doc(localStorage.getItem('userValuable')).set({
                         email: localStorage.getItem('email'),
                         student_id: localStorage.getItem('student-number'),
@@ -306,15 +311,15 @@ function submitImages(){
                     }).then(() => {
                         getPage("registration/success.html").then((data)=>{
                             displayPage(data, page);
-                            loading(false);
+                            uploading(false);
                         // ...
                     }).catch((error)=>{
                         console.log(error);
-                        loading(false);
+                        uploading(false);
                     });
                     
                 }).catch((error)=>{
-                    loading(false);
+                    uploading(false);
                     var errorCode = error.code;
                         var errorMessage = error.message;
                         console.log(errorMessage);
@@ -326,12 +331,14 @@ function submitImages(){
             },
             function(error){
                 console.log("error "+error);
+                uploading(false);
             }
             );
         }
     },
     function(error){
         console.log("error "+error);
+        uploading(false);
         // reject(error);
     }
     );
@@ -355,6 +362,7 @@ window.saveLocalImg_student_id_image = function saveImageToLocalstudentid_image(
         checkBox.value = "checked";
         reader.onload = function(){
             document.getElementById("preview_student_id").src = reader.result;
+            document.getElementById("submit-btn").classList.remove("disabled-btn");
         }
         reader.readAsDataURL(files_id[0]);
 
@@ -374,6 +382,7 @@ window.saveLocal_passport_size_photo_image = function saveLocalpassportsize_phot
         checkBox.value = "checked";
         reader.onload = function(){
             document.getElementById("preview_password_size_photo").src = reader.result;
+            document.getElementById("submit-btn").classList.remove("disabled-btn");
         }
         reader.readAsDataURL(files_passport[0]);
 
