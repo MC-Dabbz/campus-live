@@ -40,7 +40,7 @@ header{
     left: 0;
     top: 0;
     z-index: 6;
-    box-shadow: 0px 4px 5px #cfcfcf;;
+    /* box-shadow: 0px 4px 5px #cfcfcf; */
 }
 header div{
     display: inline-grid;

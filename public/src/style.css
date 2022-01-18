@@ -13,6 +13,7 @@
 @import "progressBar.css";
 @import "greeting.css";
 @import "messages.css";
+@import "back-drop.css";
 
 .helper-text{
     font-size:14px;
