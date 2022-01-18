@@ -3,6 +3,7 @@
   }
 .body-font{
     font-family: 'Roboto', serif;
+    letter-spacing: .4px;
 }
 .button-font-size{
     font-size: 15px;
