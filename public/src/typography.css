@@ -1,10 +1,15 @@
 .fancy-text{
-    font-family: 'Kurale', serif;
+    font-family: 'Orbitron', sans-serif;
   }
 .body-font{
-    font-family: 'Roboto', serif;
+    font-family: 'Nunito', sans-serif;
     letter-spacing: .4px;
 }
+h1, h2, h3, h4{
+    font-family: 'Heebo', sans-serif;
+    line-height: 2;
+}
+
 .button-font-size{
     font-size: 15px;
 }

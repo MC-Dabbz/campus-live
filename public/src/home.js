@@ -1,8 +1,8 @@
 class BackDropSwatch{
     constructor(){
-        this.morning = "src/assets/morning.jpg";
+        this.morning = "src/assets/bg/WhatsApp Image 2022-01-19 at 11.15.19 AM.jpeg";
         this.afternoon = "src/assets/afternoon.jpg";
-        this.evening = "src/assets/evening.jpg";
+        this.evening = "src/assets/night.jpg";
         this.rainyMorning = null;
         this.rainyAfternoon = null;
         this.rainyEvening = null;
@@ -45,19 +45,22 @@ class BackDropSwatch{
 
     }
     putImage(){
-        if(this.timeOfDay === "morning"){
-            this.place(this.morning);
-            document.getElementById("back-drop").style.color = "#000000";
-            document.getElementById("search-box").style.borderColor = "#00000087";
-        } else if(this.timeOfDay === "afternoon"){
-            this.place(this.afternoon);
-            document.getElementById("back-drop").style.color = "#ffffff";
-            document.getElementById("search-box").style.borderColor = "#ffffff87";
-        } else if(this.timeOfDay === "evening"){
-            this.place(this.evening);
-            document.getElementById("back-drop").style.color = "#ffffff";
-            document.getElementById("search-box").style.borderColor = "#ffffff87";
-        }
+      this.place(this.morning);
+      
+        // if(this.timeOfDay === "morning"){
+        //     this.place(this.morning);
+        //     document.getElementById("back-drop").style.color = "#000000";
+        //     document.getElementById("search-box").style.borderColor = "#00000087";
+        // } else if(this.timeOfDay === "afternoon"){
+        //     this.place(this.afternoon);
+        //     document.getElementById("back-drop").style.color = "#ffffff";
+        //     document.getElementById("search-box").style.borderColor = "#ffffff";
+        // } else if(this.timeOfDay === "evening"){
+        //     this.place(this.evening);
+        //     document.getElementById("back-drop").style.color = "#ffffff";
+        //     document.getElementById("search-box").style.borderColor = "#ffffff";
+        //     // document.getElementById("header").style.backgroundColor = "#24235f";
+        // }
         return;
     }
 }

@@ -4,6 +4,7 @@
     font-weight: 500;
     color: #515151;
     overflow-wrap: break-word;
+    text-align: center;
 }
 .greeting .icon{
     font-size: 30px;

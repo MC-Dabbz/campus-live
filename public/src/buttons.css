@@ -61,6 +61,18 @@
     background-color: var(--primary);
     color: var(--on-primary);
 }
+.primary-btn{
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+a.btn{
+    background-color: var(--secondary);
+    color: var(--on-secondary);
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
 .muted-btn{
     border: 1px solid #d7d7d7;
 }

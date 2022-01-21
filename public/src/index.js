@@ -408,7 +408,7 @@ window.switchToP8 = function switchToP8(){
 
 var curImg = new Image();
 
-curImg.src = "src/assets/background-2.jpg";
+curImg.src = "src/assets/bg/WhatsApp Image 2022-01-19 at 11.15.15 AM.jpeg";
 curImg.onload = function(){
         // do whatever here, add it to the background, append the image ect.
         document.getElementById("side-image").style.backgroundImage = "url('"+curImg.src+"')";  
