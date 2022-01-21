@@ -14,6 +14,7 @@
 @import "greeting.css";
 @import "messages.css";
 @import "back-drop.css";
+@import "cart.css";
 
 .helper-text{
     font-size:14px;
