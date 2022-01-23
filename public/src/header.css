@@ -128,6 +128,9 @@ header #search-bar:focus{
         display: none !important;
         
     }
+    header{
+        padding-block: 0px;
+    }
    
     header div.items{
         grid-template-columns: 33.3% 33.3% 33.3%;
