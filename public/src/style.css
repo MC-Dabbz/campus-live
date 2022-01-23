@@ -16,7 +16,9 @@
 @import "back-drop.css";
 @import "search-bar.css";
 @import "category-card.css";
-
+@import "search-bar.css";
+@import "category-card.css";
+@import "cart.css";
 .helper-text{
     font-size:14px;
 }
