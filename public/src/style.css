@@ -14,8 +14,17 @@
 @import "greeting.css";
 @import "messages.css";
 @import "back-drop.css";
+<<<<<<< HEAD
 @import "search-bar.css";
 @import "category-card.css";
+=======
+<<<<<<< Updated upstream
+=======
+@import "search-bar.css";
+@import "category-card.css";
+>>>>>>> Stashed changes
+@import "cart.css";
+>>>>>>> hotfix
 
 .helper-text{
     font-size:14px;
