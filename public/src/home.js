@@ -64,6 +64,7 @@ class BackDropSwatch{
         return;
     }
 }
-var backDrop = new BackDropSwatch();
-backDrop.getTime()
-backDrop.putImage();
+// var backDrop = new BackDropSwatch();
+// backDrop.getTime()
+// backDrop.putImage();
+

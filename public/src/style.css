@@ -19,6 +19,7 @@
 @import "search-bar.css";
 @import "category-card.css";
 @import "cart.css";
+@import "department-carousel.css";
 .helper-text{
     font-size:14px;
 }
