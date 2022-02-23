@@ -1,9 +1,9 @@
 footer{
-    margin: 10px;
+    margin-left: 10px;
     background-image: url("assets/Footerimg.png");
     background-repeat: no-repeat;
     background-position: right;
-    position: absolute;
+    position: static;
     width: 100%;
     bottom: 0px;
 }
