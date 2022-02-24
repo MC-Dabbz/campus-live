@@ -10,15 +10,23 @@
     top: 0px;
 }
 .prompt h2{
-    color: red;
+    font-family: 'Barlow', sans-serif;
+    font-size: 20px;
+    line-height: 1.5px;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    font-weight: 700;
 }
+
 .signup{
-    color: white;
-    background-color: #24027B;
-    width: 80px;
-    height: 30px;
+    color: var(--on-primary);
+    background-color: var(--primary);
+    width: 105px;
+    height: 35px;
     border: none;
     border-radius: 3px 3px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 .offer{
     display: block;
