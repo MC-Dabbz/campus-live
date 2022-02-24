@@ -3,8 +3,8 @@
     --primary: #2f6dd7;
     --primary-dark: #2352a1;
     --primary-light: #2b64c5;
-    --secondary: #db3529;
-    --tetiary: #84BF9E;
+    --secondary: #ed143d;
+    --tetiary: #00960c;
     --error: #ff9800;
     --muted: #cccccc;
     --disabled-primary: #93afe1;
@@ -43,10 +43,10 @@
     color: #2f6dd7;
 }
 .secondary-text{
-    color: #db3529;
+    color: var(--secondary);
 }
 .tetiary-text{
-    color: #84BF9E;
+    color: var(--tetiary);
 }
 .muted-text{
     color: #000000e3;
