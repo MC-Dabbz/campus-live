@@ -20,6 +20,8 @@
 @import "category-card.css";
 @import "cart.css";
 @import "department-carousel.css";
+@import "Newfooter.css";
+@import "prompt.css";
 .helper-text{
     font-size:14px;
 }
