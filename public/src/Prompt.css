@@ -1,0 +1,26 @@
+.prompt {
+    margin: 10px 10px 10px 10px; 
+    border: 1px solid;
+    border-radius: 10px 10px 10px 10px; 
+    border-color: rgb(224, 221, 221);
+    padding: 20px 20px 20px 20px;
+    line-height: 10px;
+    display:block;
+    position: relative;
+    top: 0px;
+}
+.prompt h2{
+    color: red;
+}
+.signup{
+    color: white;
+    background-color: #24027B;
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 3px 3px;
+}
+.offer{
+    display: block;
+    margin-top: 20px;
+}
